@@ -19,6 +19,11 @@ namespace Business
             return portal.Execute(cmd);
         }
 
+        public RandomNumberCommand() { }
+        
+        [Create]
+        void DoCreate() { }
+
         [Execute]
         void DoExecute()
         {
