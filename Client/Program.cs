@@ -1,7 +1,7 @@
 ﻿using Csla;
 using Csla.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CslaBox = Client.CslaBox;
+using CslaBox = Business.CslaBox;
 
 var services = new ServiceCollection();
 
