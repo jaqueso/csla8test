@@ -4,9 +4,12 @@ namespace Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DataPortalController(Csla.ApplicationContext applicationContext)
-        : Csla.Server.Hosts.HttpPortalController(applicationContext)
+    public class DataPortalController : Csla.Server.Hosts.HttpPortalController
     {
+        public DataPortalController(Csla.ApplicationContext context) : base(context)
+        {
+        }
+
         [HttpGet]
         public string Get()
         {
