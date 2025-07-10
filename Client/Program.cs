@@ -1,9 +1,11 @@
-﻿using Csla;
+﻿using Business;
+using Csla;
 using Csla.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CslaBox = Business.CslaBox;
 
 var services = new ServiceCollection();
+services.AddTransient<HttpClient>();
 
 services.AddCsla(o => o
   .Security(o => o.FlowSecurityPrincipalFromClient = false)
@@ -12,4 +14,5 @@ services.AddCsla(o => o
 
 CslaBox.ServiceProvider = services.BuildServiceProvider();
 
-var dpfactory = CslaBox.ServiceProvider.GetRequiredService<IDataPortalFactory>();
+var cmd = RandomNumberCommand.Execute();
+Console.WriteLine(cmd.Result);
