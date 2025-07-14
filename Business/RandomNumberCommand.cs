@@ -1,4 +1,6 @@
 ﻿using Csla;
+using Csla.Core;
+using Csla.Configuration;
 
 namespace Business
 {
@@ -27,6 +29,9 @@ namespace Business
         [Execute]
         void DoExecute()
         {
+            Console.WriteLine("RandomNumberCommand.DoExecute");
+            Console.WriteLine("Authenticated: " + (ApplicationContext?.User?.Identity?.IsAuthenticated ?? false));
+            
             var obj = new Random();
             Result = obj.Next();
         }
