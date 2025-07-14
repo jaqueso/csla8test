@@ -14,5 +14,9 @@ services.AddCsla(o => o
 
 CslaBox.ServiceProvider = services.BuildServiceProvider();
 
+var identity = new ClaimsIdentity("asdf");
+var principal = new ClaimsPrincipal(identity);
+CslaBox.SetUser(principal);
+
 var cmd = RandomNumberCommand.Execute();
 Console.WriteLine(cmd.Result);
