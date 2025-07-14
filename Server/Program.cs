@@ -12,7 +12,13 @@ builder.Services.Configure<KestrelServerOptions>(options =>
     options.AllowSynchronousIO = true;
 });
 builder.Services.AddCsla(
-    options => options.AddAspNetCore());
+    options => options
+        .AddAspNetCore()
+        .Security(s =>
+        {
+            s.AuthenticationType = "Custom";
+            s.FlowSecurityPrincipalFromClient = true;
+        }));
 
 var app = builder.Build();
 

@@ -8,9 +8,16 @@ services.AddTransient<HttpClient>();
 
 var portal = "https://localhost:7282";
 services.AddCsla(
-    o => o.Security(o => o.FlowSecurityPrincipalFromClient = false)
-        .DataPortal(o => o.ClientSideDataPortal(
-            o => o.UseHttpProxy(o => o.DataPortalUrl = portal + "/api/DataPortal")))
+    o => o
+        .Security(s =>
+        {
+            s.AuthenticationType = "Custom";
+            s.FlowSecurityPrincipalFromClient = true;
+        })
+        .DataPortal(o => 
+            o.ClientSideDataPortal(o => 
+                o.UseHttpProxy(o => 
+                    o.DataPortalUrl = portal + "/api/DataPortal")))
   );
 
 CslaBox.ServiceProvider = services.BuildServiceProvider();
